@@ -4,7 +4,7 @@
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
-    "typescript": "latest",
+ "typescript": "^5.0.0",
     "@tsconfig/recommended": "^1.0.8",
     "@types/bun": "latest",
     "turbo": "^2.3.3"

@@ -7,7 +7,8 @@
     "migrate": "drizzle-kit generate && drizzle-kit migrate"
   },
   "devDependencies": {
-    "typescript": "latest",
+    "typescript": "^5.0.0",
+    "@tsconfig/recommended": "^1.0.8",
     "@types/bun": "latest",
     "@types/pg": "^8.11.10",
     "drizzle-kit": "^0.30.1",
