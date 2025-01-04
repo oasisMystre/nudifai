@@ -1,6 +1,7 @@
 import { Markup, Scenes, type Telegraf } from "telegraf";
 
 import { readFileSync } from "./utils/formatText";
+import { uploadImageMessage } from "./generateScene";
 
 export const onStart = (bot: Telegraf<Scenes.WizardContext>) => {
   bot.start((context) => {
@@ -11,5 +12,5 @@ export const onStart = (bot: Telegraf<Scenes.WizardContext>) => {
     );
   });
 
-  bot.action("generate", (context) => context.scene.enter("generate"));
+  bot.action("generate", uploadImageMessage);
 };
