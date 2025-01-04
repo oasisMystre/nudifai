@@ -5,8 +5,10 @@ import fastify, { type FastifyRequest } from "fastify";
 
 import { regiterBot } from "./bot";
 import { telegramAccessToken } from "./env";
+import { SeaArtApi } from "lib/seaart";
 
 async function main() {
+  new SeaArtApi()
   const bot = new Telegraf(telegramAccessToken);
   const server = fastify({
     logger: true,

@@ -1,6 +1,7 @@
 // @ts-expect-error
 import cookie from "cookie-parse";
 import axios, { type AxiosInstance } from "axios";
+import { HttpsProxyAgent } from "https-proxy-agent";
 
 import { TaskApi } from "./task.api";
 import { GenerateApi } from "./generate.api";
@@ -20,8 +21,13 @@ export class SeaArtApi {
 
     const parse = cookie.parse(Cookie);
 
+    const httpsAgent = new HttpsProxyAgent(
+      "http://spr4vkheds:gXmb2B09=lb8luHxUa@gate.smartproxy.com:10001"
+    );
+
     this.axios = axios.create({
       baseURL: "https://www.seaart.ai/",
+      httpsAgent,
       headers: {
         Cookie: Cookie,
         Token: parse.T,
