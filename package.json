@@ -4,6 +4,7 @@
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {
+    "typescript": "latest",
     "@tsconfig/recommended": "^1.0.8",
     "@types/bun": "latest",
     "turbo": "^2.3.3"
