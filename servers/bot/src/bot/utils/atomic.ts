@@ -1,5 +1,4 @@
-import type { MiddlewareFn } from "telegraf";
-import type { Context } from "../generateScene";
+import type { Context, MiddlewareFn } from "telegraf";
 
 export default function atomic<T extends MiddlewareFn<Context>>(callback: T) {
   return async (context: Context, next: () => Promise<void>) =>
