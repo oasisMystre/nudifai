@@ -19,4 +19,4 @@ services:
 databases:
   - name: nudifDB
     user: admin
-    plan: starter
+    plan: free
