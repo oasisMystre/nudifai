@@ -22,7 +22,7 @@ export const onPhoto = (
       const chat = await context.replyWithAnimation(
         Input.fromLocalFile("./assets/loading.gif"),
         {
-          caption: "> This might take up to a minute to generate.",
+          caption: "> This might take up to a minute to generate\\.",
           parse_mode: "MarkdownV2",
         }
       );
