@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: nudif
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    dockerfilePath: servers/bot/Dockerfile
+    buildFilter:
+      paths:
+        - servers/bot/*.json
+        - servers/bot/**/*.ts
+        - servers/bot/Dockerfile
+    envVars:
+      - fromGroup: nudif/servers/bot
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nudifDB
+          property: connectionString
+databases:
+  - name: nudifDB
+    user: admin
+    plan: starter
