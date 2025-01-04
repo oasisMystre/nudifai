@@ -1,10 +1,17 @@
+import path from "path";
+import { existsSync } from "fs";
 import { Worker } from "worker_threads";
+
 import { format } from "./lib/utils";
 import type { Job } from "./worker";
 
 export function spawn<T>(job: Job): Promise<T> {
   return new Promise((resolve, reject) => {
-    const worker = new Worker("./src/worker.ts", {
+    const workerFile = existsSync("./src/worker.ts")
+      ? "./worker.ts"
+      : "./worker.js";
+
+    const worker = new Worker(path.join(__dirname, workerFile), {
       workerData: { job, options: { maxRetries: 8 } },
     });
 

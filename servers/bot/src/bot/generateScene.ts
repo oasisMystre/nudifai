@@ -48,7 +48,6 @@ export const generateScene = new Scenes.WizardScene<Context>(
           .then(({ data }) => data);
 
         const file = new File([blob], "image.jpg", { type: "image/jpg" });
-        console.log(file.length);
         const seaart = new SeaArtApi();
         const {
           data: {
@@ -102,8 +101,9 @@ export const generateScene = new Scenes.WizardScene<Context>(
 
         return context.scene.leave();
       })(context, next).catch(async (error) => {
+        console.log(error)
         await context.deleteMessage(chat.message_id);
-        return context.replyWithMarkdownV2(cleanText(error));
+        return context.replyWithMarkdownV2(cleanText(String(error)));
       });
     }
   }
