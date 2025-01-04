@@ -7,7 +7,7 @@ import type { Job } from "./worker";
 
 export function spawn<T>(job: Job): Promise<T> {
   return new Promise((resolve, reject) => {
-    const workerFile = existsSync("./src/worker.ts")
+    const workerFile = existsSync(path.join(__dirname, "/worker.ts"))
       ? "./worker.ts"
       : "./worker.js";
 
