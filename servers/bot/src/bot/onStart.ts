@@ -9,7 +9,7 @@ export const onStart = (context: Context) => {
     Markup.inlineKeyboard([
       [
         Markup.button.callback("Nudify", "generate"),
-        Markup.button.callback("Head Shot", "swap"),
+        Markup.button.callback("Face Swap", "swap"),
       ],
       [
         Markup.button.url(
