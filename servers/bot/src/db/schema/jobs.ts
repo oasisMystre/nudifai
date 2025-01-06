@@ -1,6 +1,5 @@
 import { json, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { users } from "./users";
-import type { Task } from "../../lib/seaart/models";
 
 export const jobs = pgTable("jobss", {
   id: uuid().defaultRandom().primaryKey(),

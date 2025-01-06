@@ -4,6 +4,7 @@ import { db } from "../db";
 import type { userSelectSchema } from "../db/zod";
 
 import { onStart } from "./onStart";
+import { onSocials } from "./onSocials";
 import { createSwapScene } from "./swapScene";
 import { createGenerateScene } from "./generateScene";
 import { getOrCreateUser } from "../modules/users/user.controller";
@@ -33,6 +34,7 @@ export const regiterBot = function (bot: Telegraf<any>) {
   bot.command("generate", (context) => context.scene.enter("generate"));
   bot.action("swap", (context) => context.scene.enter("swap"));
   bot.command("swap", (context) => context.scene.enter("swap"));
+  bot.command("socials", onSocials);
 
   bot.catch(console.error);
 };
