@@ -1,5 +1,5 @@
 import { ApiImpl } from "../apiImpl";
-import type { Response, Task, TaskArgs } from "./model";
+import type { Response, Task, TaskArgs } from "./models";
 
 export class TaskApi extends ApiImpl {
   protected path: string = "/api/v1/task/";

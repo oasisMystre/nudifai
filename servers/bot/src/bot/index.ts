@@ -1,12 +1,17 @@
-import { Context, session, type Telegraf } from "telegraf";
+import { Context, Scenes, session, type Telegraf } from "telegraf";
 
 import { db } from "../db";
-import { onStart } from "./onStart";
-import { onPhoto } from "./onPhoto";
 import type { userSelectSchema } from "../db/zod";
+
+import { onStart } from "./onStart";
+import { createSwapScene } from "./swapScene";
+import { createGenerateScene } from "./generateScene";
 import { getOrCreateUser } from "../modules/users/user.controller";
 
 export const regiterBot = function (bot: Telegraf<any>) {
+  const scenes = [createGenerateScene(), createSwapScene()];
+  const stage = new Scenes.Stage<any>(scenes);
+
   const authenticateUser = async (
     context: Context & { user?: Zod.infer<typeof userSelectSchema> },
     next: () => void
@@ -21,9 +26,13 @@ export const regiterBot = function (bot: Telegraf<any>) {
 
   bot.use(session());
   bot.use(authenticateUser);
+  bot.use(stage.middleware());
 
-  onStart(bot);
-  onPhoto(bot);
+  bot.start(onStart);
+  bot.action("generate", (context) => context.scene.enter("generate"));
+  bot.command("generate", (context) => context.scene.enter("generate"));
+  bot.action("swap", (context) => context.scene.enter("swap"));
+  bot.command("swap", (context) => context.scene.enter("swap"));
 
   bot.catch(console.error);
 };

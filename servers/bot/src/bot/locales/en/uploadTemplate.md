@@ -1,0 +1,1 @@
+Send target photo template

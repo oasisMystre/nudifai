@@ -1,3 +1,7 @@
-Welcome to NudifAi 
+Hello,
 
-Create nude and undress images by inputing an image. To get generate a new nude from photo click on the button below!
+What can I do for?
+
+I can help you undress a female picture, swap photo faces and also generate NSFW video contents. I'm also your naughty girlfriend. 
+
+Click on the options below to start generating contents.

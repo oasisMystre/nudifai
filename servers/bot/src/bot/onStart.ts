@@ -1,16 +1,17 @@
-import { Markup, Scenes, type Telegraf } from "telegraf";
+import { Context, Markup, Scenes, type Telegraf } from "telegraf";
 
 import { readFileSync } from "./utils/formatText";
-import { uploadImageMessage } from "./generateScene";
 
-export const onStart = (bot: Telegraf<Scenes.WizardContext>) => {
-  bot.start((context) => {
-    const message = readFileSync("./src/bot/locales/en/start.md");
-    context.replyWithMarkdownV2(
-      message,
-      Markup.inlineKeyboard([Markup.button.callback("Generate", "generate")])
-    );
-  });
-
-  bot.action("generate", uploadImageMessage);
+export const onStart = (context: Context) => {
+  const message = readFileSync("./src/bot/locales/en/start.md");
+  return context.replyWithMarkdownV2(
+    message,
+    Markup.inlineKeyboard([
+      [
+        Markup.button.callback("Nudify", "generate"),
+        Markup.button.callback("Head Shot", "swap"),
+      ],
+      [Markup.button.callback("Video (Coming Soon)", "video")],
+    ])
+  );
 };

@@ -6,11 +6,13 @@ import { HttpsProxyAgent } from "https-proxy-agent";
 import { TaskApi } from "./task.api";
 import { GenerateApi } from "./generate.api";
 import { UploadApi } from "./upload.api";
+import { CreateApi } from "./create.api";
 
 export class SeaArtApi {
   axios: AxiosInstance;
   readonly task: TaskApi;
   readonly upload: UploadApi;
+  readonly create: CreateApi;
   readonly generate: GenerateApi;
 
   constructor(args?: { Cookie: string }) {
@@ -45,6 +47,7 @@ export class SeaArtApi {
 
     this.task = new TaskApi(this.axios);
     this.upload = new UploadApi(this.axios);
+    this.create = new CreateApi(this.axios);
     this.generate = new GenerateApi(this.axios);
   }
 }

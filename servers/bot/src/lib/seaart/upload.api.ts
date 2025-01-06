@@ -1,8 +1,7 @@
 import axios from "axios";
 
 import { ApiImpl } from "../apiImpl";
-import type { Response } from "./model";
-import type { ConfirmedUpload, Upload } from "../muke/models";
+import type { ConfirmedUpload, Response, Upload } from "./models";
 
 export class UploadApi extends ApiImpl {
   protected path: string = "/api/v1/resource/";
