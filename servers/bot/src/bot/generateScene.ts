@@ -38,9 +38,7 @@ export const createGenerateScene = () => {
         const file = new File([blob], "image.jpg", { type: "image/jpg" });
         const seaart = new SeaArtApi();
         const {
-          data: {
-            data: { pre_sign, file_id },
-          },
+          data: { data },
         } = await seaart.upload.uploadImageByPreSign({
           category: 20,
           content_type: "image/jpg",
@@ -49,16 +47,20 @@ export const createGenerateScene = () => {
           hash_val: seaartHashVal,
         });
 
-        await seaart.upload.uploadImage(pre_sign, file);
+        let asset: string;
 
-        const asset = await seaart.upload
-          .confirmImageUploadedByPreSign({
-            category: 20,
-            file_id,
-          })
-          .then(({ data }) => data);
+        if ("pre_sign" in data) {
+          const { pre_sign, file_id } = data;
+          await seaart.upload.uploadImage(pre_sign, file);
 
-        if (!asset.data) return context.reply(asset.status.msg);
+          const response = await seaart.upload
+            .confirmImageUploadedByPreSign({
+              category: 20,
+              file_id,
+            })
+            .then(({ data }) => data);
+          asset = response.data.url;
+        } else asset = data.img_url;
 
         const task = await seaart.generate
           .apply({
@@ -68,7 +70,7 @@ export const createGenerateScene = () => {
                 field: "image",
                 node_id: "1",
                 node_type: "LoadImage",
-                val: asset.data.url,
+                val: asset,
               },
             ],
           })

@@ -79,9 +79,7 @@ export const createSwapScene = () => {
 
           const [template, face] = await Promise.all(
             files.map(async (file) => {
-              const {
-                data: { pre_sign, file_id },
-              } = await seaart.upload
+              const { data } = await seaart.upload
                 .uploadImageByPreSign({
                   content_type: file.type,
                   category: 16,
@@ -90,20 +88,23 @@ export const createSwapScene = () => {
                   hash_val: seaartHashVal,
                 })
                 .then(({ data }) => data);
+              if ("pre_sign" in data) {
+                const { pre_sign, file_id } = data;
+                await seaart.upload.uploadImage(pre_sign, file);
 
-              await seaart.upload.uploadImage(pre_sign, file);
+                const {
+                  data: { url },
+                } = await seaart.upload
+                  .confirmImageUploadedByPreSign({
+                    category: 16,
+                    file_id,
+                  })
+                  .then(({ data }) => data);
 
-              return seaart.upload
-                .confirmImageUploadedByPreSign({
-                  category: 16,
-                  file_id,
-                })
-                .then(({ data }) => data);
+                return url;
+              } else return data.img_url;
             })
           );
-
-          if (!face.data) return context.reply(face.status.msg);
-          if (!template.data) return context.reply(template.status.msg);
 
           const task = await seaart.create
             .create({
@@ -111,8 +112,8 @@ export const createSwapScene = () => {
               meta: {
                 exchange_face: {
                   face_distance: 1.5,
-                  source_uri: face.data.url,
-                  target_uri: template.data.url,
+                  source_uri: face,
+                  target_uri: template,
                 },
               },
               source: 17100,

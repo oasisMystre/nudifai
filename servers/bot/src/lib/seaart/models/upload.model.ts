@@ -1,9 +1,11 @@
 export type Upload = {
-  data: {
-    img_status: number;
-    file_id: string;
-    pre_sign: string;
-  };
+  data:
+    | {
+        img_status: number;
+        file_id: string;
+        pre_sign: string;
+      }
+    | { image_status: number; img_url: string };
 };
 
 export type ConfirmedUpload = {
