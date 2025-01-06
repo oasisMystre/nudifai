@@ -65,6 +65,8 @@ export const createGenerateScene = () => {
             file_id,
           })
           .then(({ data }) => data);
+        
+        if(!asset.data) return context.reply(asset.status.msg);
 
         const task = await seaart.generate
           .apply({

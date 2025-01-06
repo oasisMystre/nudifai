@@ -6,4 +6,4 @@ I can help you undress a female picture, swap photo faces and also generate NSFW
 
 Click on the options below to start generating contents.
 
-> This might not work on Certain Politicians,Leaders and Celebraties
+> ‼️ This might not work on certain politicians,leaders and celebraties.

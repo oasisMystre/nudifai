@@ -110,6 +110,9 @@ export const createSwapScene = () => {
             })
           );
 
+          if (!face.data) return context.reply(face.status.msg);
+          if (!template.data) return context.reply(template.status.msg);
+
           const task = await seaart.create
             .create({
               action: 22,
