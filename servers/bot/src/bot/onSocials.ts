@@ -1,4 +1,4 @@
-import { Context, Markup, Scenes, type Telegraf } from "telegraf";
+import { Context } from "telegraf";
 
 import { readFileSync } from "./utils/formatText";
 

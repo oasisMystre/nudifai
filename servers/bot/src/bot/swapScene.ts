@@ -26,15 +26,15 @@ export type Context = Scenes.WizardContext<Session> & {
 export const createSwapScene = () => {
   return new Scenes.WizardScene<Context>(
     "swap",
-    async (context) => {
+    catchRuntimeError(async (context) => {
       context.scene.session.files = [];
 
       const message = readFileSync("./src/bot/locales/en/uploadTemplate.md");
       await context.replyWithMarkdownV2(message);
 
       return context.wizard.next();
-    },
-    async (context) => {
+    }),
+    catchRuntimeError(async (context) => {
       const message = context.message;
       if (message && "photo" in message) {
         const [photo] = await Promise.all(
@@ -49,7 +49,7 @@ export const createSwapScene = () => {
         );
         return context.wizard.next();
       }
-    },
+    }),
     catchRuntimeError<Context, MiddlewareFn<Context>>(async (context, next) => {
       const message = context.message;
       if (message && "photo" in message) {

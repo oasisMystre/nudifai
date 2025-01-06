@@ -8,6 +8,7 @@ import { onSocials } from "./onSocials";
 import { createSwapScene } from "./swapScene";
 import { createGenerateScene } from "./generateScene";
 import { getOrCreateUser } from "../modules/users/user.controller";
+import { catchRuntimeError } from "./utils/atomic";
 
 export const regiterBot = function (bot: Telegraf<any>) {
   const scenes = [createGenerateScene(), createSwapScene()];
@@ -29,12 +30,12 @@ export const regiterBot = function (bot: Telegraf<any>) {
   bot.use(authenticateUser);
   bot.use(stage.middleware());
 
-  bot.start(onStart);
+  bot.start(catchRuntimeError(onStart));
   bot.action("generate", (context) => context.scene.enter("generate"));
   bot.command("generate", (context) => context.scene.enter("generate"));
   bot.action("swap", (context) => context.scene.enter("swap"));
   bot.command("swap", (context) => context.scene.enter("swap"));
-  bot.command("socials", onSocials);
+  bot.command("socials", catchRuntimeError(onSocials));
 
   bot.catch(console.error);
 };

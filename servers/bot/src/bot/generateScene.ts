@@ -102,11 +102,11 @@ export const createGenerateScene = () => {
 
   return new Scenes.WizardScene(
     "generate",
-    async (context) => {
+    catchRuntimeError(async (context) => {
       const message = readFileSync("./src/bot/locales/en/uploadImage.md");
       await context.replyWithMarkdownV2(message);
       return context.wizard.next();
-    },
+    }),
     composer
   );
 };
