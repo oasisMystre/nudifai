@@ -11,6 +11,12 @@ export const onStart = (context: Context) => {
         Markup.button.callback("Nudify", "generate"),
         Markup.button.callback("Head Shot", "swap"),
       ],
+      [
+        Markup.button.url(
+          "Naughty 🥵🍆 AI GirlFriend",
+          "https://t.me/nudify_ai_girlfriend_bot"
+        ),
+      ],
       [Markup.button.callback("Video (Coming Soon)", "video")],
     ])
   );
