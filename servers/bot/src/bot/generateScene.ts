@@ -23,15 +23,9 @@ export const createGenerateScene = () => {
     catchRuntimeError(async (context, next) => {
       const message = context.message;
 
-      const chat = await context.replyWithAnimation(
-        Input.fromLocalFile("./assets/loading.gif"),
-        {
-          caption: "> This might take up to a minute to generate\\.",
-          parse_mode: "MarkdownV2",
-        }
-      );
-
       await atomic(async () => {
+        await context.sendChatAction("typing");
+
         const [photo] = await Promise.all(
           message.photo
             .slice(message.photo.length - 1)
@@ -65,8 +59,8 @@ export const createGenerateScene = () => {
             file_id,
           })
           .then(({ data }) => data);
-        
-        if(!asset.data) return context.reply(asset.status.msg);
+
+        if (!asset.data) return context.reply(asset.status.msg);
 
         const task = await seaart.generate
           .apply({
@@ -93,12 +87,10 @@ export const createGenerateScene = () => {
         });
 
         for (const result of results) {
-          await context.deleteMessage(chat.message_id);
           await context.replyWithPhoto(Input.fromURL(result));
         }
       })(context, next).catch(async (error) => {
         console.error(error);
-        await context.deleteMessage(chat.message_id);
         return context.replyWithMarkdownV2(
           format("`%`", cleanText(String(error)))
         );
