@@ -10,4 +10,11 @@ export class TaskApi extends ApiImpl {
       args
     );
   }
+
+  delete(args: { ids: string[] }) {
+    return this.axios.post<Response<{ data: null }>>(
+      this.buildPath("delete"),
+      args
+    );
+  }
 }
