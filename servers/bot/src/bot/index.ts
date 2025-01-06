@@ -7,7 +7,6 @@ import { getOrCreateUser } from "../modules/users/user.controller";
 import { onPhoto } from "./onPhoto";
 
 export const regiterBot = function (bot: Telegraf<any>) {
-
   const authenticateUser = async (
     context: Context & { user?: Zod.infer<typeof userSelectSchema> },
     next: () => void
@@ -25,4 +24,6 @@ export const regiterBot = function (bot: Telegraf<any>) {
 
   onStart(bot);
   onPhoto(bot);
+
+  bot.catch(console.error);
 };
