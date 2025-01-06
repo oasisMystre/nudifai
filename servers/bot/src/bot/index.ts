@@ -1,10 +1,10 @@
-import { Context, Scenes, session, type Telegraf } from "telegraf";
+import { Context, session, type Telegraf } from "telegraf";
 
 import { db } from "../db";
 import { onStart } from "./onStart";
+import { onPhoto } from "./onPhoto";
 import type { userSelectSchema } from "../db/zod";
 import { getOrCreateUser } from "../modules/users/user.controller";
-import { onPhoto } from "./onPhoto";
 
 export const regiterBot = function (bot: Telegraf<any>) {
   const authenticateUser = async (

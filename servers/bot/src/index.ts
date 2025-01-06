@@ -4,8 +4,8 @@ import cors from "@fastify/cors";
 import fastify, { type FastifyRequest } from "fastify";
 
 import { regiterBot } from "./bot";
+import { SeaArtApi } from "./lib/seaart";
 import { telegramAccessToken } from "./env";
-import { SeaArtApi } from "lib/seaart";
 
 async function main() {
   new SeaArtApi()

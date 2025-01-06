@@ -3,14 +3,14 @@ import { Context, Input, Telegraf } from "telegraf";
 
 import { db } from "../db";
 import { spawn } from "../spawn";
-import atomic, { catchRuntimeError } from "./utils/atomic";
 import { SeaArtApi } from "../lib/seaart";
 import { seaartHashVal, seaartApplyId } from "../env";
 import { createJob } from "../modules/job/job.controller";
 
+import { format } from "../lib/utils";
 import { cleanText } from "./utils/formatText";
 import { uploadImageMessage } from "./generateScene";
-import { format } from "lib/utils";
+import atomic, { catchRuntimeError } from "./utils/atomic";
 
 export const onPhoto = (
   bot: Telegraf<Context>
