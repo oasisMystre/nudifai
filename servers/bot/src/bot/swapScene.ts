@@ -11,9 +11,9 @@ import { SeaArtApi } from "../lib/seaart";
 import { userSelectSchema } from "../db/zod";
 import { createJob } from "../modules/job/job.controller";
 
+import { onStart } from "./onStart";
 import { cleanText, readFileSync } from "./utils/formatText";
 import atomic, { catchRuntimeError } from "./utils/atomic";
-import { onStart } from "./onStart";
 
 type Session = {
   files: string[];
