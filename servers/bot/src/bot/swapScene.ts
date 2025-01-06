@@ -53,13 +53,13 @@ export const createSwapScene = () => {
     catchRuntimeError<Context, MiddlewareFn<Context>>(async (context, next) => {
       const message = context.message;
       if (message && "photo" in message) {
-        const chat = await context.replyWithAnimation(
-          Input.fromLocalFile("./assets/loading.gif"),
-          {
-            caption: "> This might take up to a minute to generate\\.",
-            parse_mode: "MarkdownV2",
-          }
-        );
+        // const chat = await context.replyWithAnimation(
+        //   Input.fromLocalFile("./assets/loading.gif"),
+        //   {
+        //     caption: "> This might take up to a minute to generate\\.",
+        //     parse_mode: "MarkdownV2",
+        //   }
+        // );
 
         await atomic(async () => {
           const [photo] = await Promise.all(
@@ -137,12 +137,12 @@ export const createSwapScene = () => {
           const results = await spawn<string[]>({ task_ids: [task.data.id] });
 
           for (const result of results) {
-            await context.deleteMessage(chat.message_id);
+            // await context.deleteMessage(chat.message_id);
             await context.replyWithPhoto(Input.fromURL(result));
           }
         })(context, next).catch(async (error) => {
           console.error(error);
-          await context.deleteMessage(chat.message_id);
+          // await context.deleteMessage(chat.message_id);
           return context.replyWithMarkdownV2(
             format("`%`", cleanText(String(error)))
           );
