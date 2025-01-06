@@ -10,7 +10,7 @@ import { createGenerateScene } from "./generateScene";
 import { getOrCreateUser } from "../modules/users/user.controller";
 import { catchRuntimeError } from "./utils/atomic";
 
-export const regiterBot = function (bot: Telegraf<any>) {
+export const registerBot = function (bot: Telegraf<any>) {
   const scenes = [createGenerateScene(), createSwapScene()];
   const stage = new Scenes.Stage<any>(scenes);
 

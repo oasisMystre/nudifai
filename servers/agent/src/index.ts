@@ -1,4 +1,6 @@
 import "dotenv/config";
+
+import "dotenv/config";
 import { Telegraf } from "telegraf";
 import cors from "@fastify/cors";
 import fastify, { type FastifyRequest } from "fastify";

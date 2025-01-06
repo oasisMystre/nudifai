@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/recommended",
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": "src",
+    "resolveJsonModule": true,
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}

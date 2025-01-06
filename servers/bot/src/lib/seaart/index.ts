@@ -2,6 +2,7 @@
 import cookie from "cookie-parse";
 import axios, { type AxiosInstance } from "axios";
 import { HttpsProxyAgent } from "https-proxy-agent";
+import * as AxiosLogger from "axios-logger";
 
 import { TaskApi } from "./task.api";
 import { GenerateApi } from "./generate.api";
@@ -44,6 +45,11 @@ export class SeaArtApi {
         "X-Request-Id": parse.requestid,
       },
     });
+
+    this.axios.interceptors.response.use(
+      AxiosLogger.responseLogger,
+      AxiosLogger.errorLogger
+    );
 
     this.task = new TaskApi(this.axios);
     this.upload = new UploadApi(this.axios);
