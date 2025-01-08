@@ -1,13 +1,11 @@
 Hello,
 
-What can I do for?
+What can I do for you today?  
 
-I can help you undress a female picture, swap photo faces and also generate NSFW video contents. I'm also your naughty girlfriend. 
+I specialize in creative image editing, including face swapping and photo modifications, as well as generating personalized content\. Think of me as your playful digital companion\!  
 
-Click on the options below to start generating contents.
+Simply click the options below to start exploring
 
->‼️ This might not work on certain politicians,leaders and celebrities.
+> ⚠️ Some features may not work on certain public figures, including politicians, leaders, and celebrities\.
 
-[Web](https://nudifai.fun/) |
-[X](https://x.com/team_nudifai) | 
-[TG](t.me/nudifai)
+[Website](https:\/\/nudifai\.fun/) \| [X](https://x\.com/team_nudifai) \| [Telegram](t\.me\/nudifai)

@@ -1,4 +1,5 @@
 import path from "path";
+import crypto from "crypto";
 import axios from "axios";
 import mime from "mime-types";
 import { Input, MiddlewareFn, Scenes } from "telegraf";
@@ -85,7 +86,7 @@ export const createSwapScene = () => {
                   category: 16,
                   file_name: file.name,
                   file_size: file.size,
-                  hash_val: seaartHashVal,
+                  hash_val: crypto.randomBytes(32).toString("hex"),
                 })
                 .then(({ data }) => data);
               if ("pre_sign" in data) {
