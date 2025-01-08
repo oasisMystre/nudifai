@@ -25,7 +25,7 @@ export class SeaArtApi {
     const parse = cookie.parse(Cookie);
 
     const httpsAgent = new HttpsProxyAgent(
-      "http://spr4vkheds:gXmb2B09=lb8luHxUa@gate.smartproxy.com:10001"
+      "http://sp1wjw3w3n:l1C=2er3zelpYY0Vep@dc.smartproxy.com:10001"
     );
 
     this.axios = axios.create({
