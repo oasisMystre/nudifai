@@ -8,7 +8,7 @@ export const onStart = (context: Context) => {
     message,
     Markup.inlineKeyboard([
       [
-        Markup.button.callback("Nudify", "generate"),
+        Markup.button.callback("Undress", "generate"),
         Markup.button.callback("Face Swap", "swap"),
       ],
       [
