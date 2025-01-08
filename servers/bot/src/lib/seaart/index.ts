@@ -16,17 +16,16 @@ export class SeaArtApi {
   readonly create: CreateApi;
   readonly generate: GenerateApi;
 
-  constructor(args?: { Cookie: string }) {
+  constructor(args?: { Cookie: string; proxyURL: string }) {
     const defaultArgs = {
       Cookie: process.env.SEAART_COOKIE!,
+      proxyURL: process.env.PROXY_URL!,
     };
-    const { Cookie } = { ...defaultArgs, ...args };
+    const { Cookie, proxyURL } = { ...defaultArgs, ...args };
 
     const parse = cookie.parse(Cookie);
 
-    const httpsAgent = new HttpsProxyAgent(
-      "http://sp1wjw3w3n:l1C=2er3zelpYY0Vep@dc.smartproxy.com:10001"
-    );
+    const httpsAgent = new HttpsProxyAgent(proxyURL);
 
     this.axios = axios.create({
       baseURL: "https://www.seaart.ai/",

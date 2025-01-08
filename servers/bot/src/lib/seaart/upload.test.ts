@@ -1,6 +1,5 @@
+import crypto from "crypto";
 import { SeaArtApi } from ".";
-import { readFileSync } from "fs";
-import { AxiosError } from "axios";
 
 describe("Test seaart upload api", () => {
   const seaart = new SeaArtApi();
@@ -11,11 +10,10 @@ describe("Test seaart upload api", () => {
       content_type: "image/jpg",
       file_name: "file_4.jpg",
       file_size: 25338,
-      hash_val:
-        "adc6b71dab23290058992e43aaef9636436113627061eb190e6a76879fb7373f",
+      hash_val: crypto.randomBytes(32).toString("hex"),
     });
 
-   console.log( JSON.stringify(data, undefined, 2));
+    console.log(JSON.stringify(data, undefined, 2));
 
     //     await seaart.upload
     //       .uploadImage(pre_sign, readFileSync("./assets/file.jpg"))

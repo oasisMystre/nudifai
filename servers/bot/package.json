@@ -27,6 +27,7 @@
     "axios-log": "^0.0.2",
     "axios-logger": "^2.8.1",
     "cookie-parse": "^0.4.0",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.38.3",
     "drizzle-zod": "^0.6.1",

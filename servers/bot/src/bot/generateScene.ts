@@ -1,10 +1,11 @@
 import axios from "axios";
+import crypto from "crypto";
 import { Composer, Input, Scenes } from "telegraf";
 
 import { db } from "../db";
 import { spawn } from "../spawn";
+import { seaartApplyId } from "../env";
 import { SeaArtApi } from "../lib/seaart";
-import { seaartHashVal, seaartApplyId } from "../env";
 import { createJob } from "../modules/job/job.controller";
 
 import { format } from "../lib/utils";
@@ -44,7 +45,7 @@ export const createGenerateScene = () => {
           content_type: "image/jpg",
           file_name: "image.jpg",
           file_size: photo.file_size!,
-          hash_val: seaartHashVal,
+          hash_val: crypto.randomBytes(32).toString("hex"),
         });
 
         let asset: string;
