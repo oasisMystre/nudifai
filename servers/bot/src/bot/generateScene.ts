@@ -105,7 +105,7 @@ export const createGenerateScene = () => {
   return new Scenes.WizardScene(
     "generate",
     catchRuntimeError(async (context) => {
-      const message = readFileSync("./src/bot/locales/en/uploadImage.md");
+      const message = readFileSync("./src/bot/locales/en/uploadImage.md", "utf-8");
       await context.replyWithMarkdownV2(message);
       return context.wizard.next();
     }),

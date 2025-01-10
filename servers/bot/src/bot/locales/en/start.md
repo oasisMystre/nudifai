@@ -9,5 +9,3 @@ Simply click the options below to start exploring
 > ⚠️ Some features may not work on certain public figures, including politicians, leaders, and celebrities\.
 
 [Website](https:\/\/Nudeai\.lol) \| [X](https:\/\/x\.com\/NudeAIProtocol) \| [Telegram](https:\/\/t\.me\/nudeaiprotocol)
-
-

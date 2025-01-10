@@ -1,16 +1,22 @@
-import { Context, Scenes, session, type Telegraf } from "telegraf";
+import { type Context, Scenes, session, type Telegraf } from "telegraf";
 
 import { db } from "../db";
 import type { userSelectSchema } from "../db/zod";
 
 import { onStart } from "./onStart";
 import { createSwapScene } from "./swapScene";
+import { catchRuntimeError } from "./utils/atomic";
 import { createGenerateScene } from "./generateScene";
 import { getOrCreateUser } from "../modules/users/user.controller";
-import { catchRuntimeError } from "./utils/atomic";
 
-export const registerBot = function (bot: Telegraf<any>) {
+export const registerBot = function (bot: Telegraf<Scenes.WizardContext>) {
   const scenes = [createGenerateScene(), createSwapScene()];
+  scenes.map((scene) =>
+    scene.command("cancel", async (context: any) => {
+      await onStart(context);
+      return context.scene.leave();
+    })
+  );
   const stage = new Scenes.Stage<any>(scenes);
 
   const authenticateUser = async (

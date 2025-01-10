@@ -7,7 +7,6 @@ import { Input, MiddlewareFn, Scenes } from "telegraf";
 import { db } from "../db";
 import { spawn } from "../spawn";
 import { format } from "../lib/utils";
-import { seaartHashVal } from "../env";
 import { SeaArtApi } from "../lib/seaart";
 import { userSelectSchema } from "../db/zod";
 import { createJob } from "../modules/job/job.controller";
@@ -30,7 +29,10 @@ export const createSwapScene = () => {
     catchRuntimeError(async (context) => {
       context.scene.session.files = [];
 
-      const message = readFileSync("./src/bot/locales/en/uploadTemplate.md");
+      const message = readFileSync(
+        "./src/bot/locales/en/uploadTemplate.md",
+        "utf-8"
+      );
       await context.replyWithMarkdownV2(message);
 
       return context.wizard.next();
@@ -46,7 +48,7 @@ export const createSwapScene = () => {
         context.scene.session.files.push(photo.toString());
 
         await context.replyWithMarkdownV2(
-          readFileSync("./src/bot/locales/en/uploadFace.md")
+          readFileSync("./src/bot/locales/en/uploadFace.md", "utf-8")
         );
         return context.wizard.next();
       }

@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { Telegraf } from "telegraf";
+import { type Scenes, Telegraf } from "telegraf";
 import cors from "@fastify/cors";
 import fastify, { type FastifyRequest } from "fastify";
 
@@ -7,7 +7,7 @@ import { registerBot } from "./bot";
 import { telegramAccessToken } from "./env";
 
 async function main() {
-  const bot = new Telegraf(telegramAccessToken);
+  const bot = new Telegraf<Scenes.WizardContext>(telegramAccessToken);
   const server = fastify({
     logger: true,
     ignoreDuplicateSlashes: true,
